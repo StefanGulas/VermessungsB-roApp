@@ -14,7 +14,7 @@ namespace VermessungsBüroApp
         public MainViewModel()
         {
             _menuItems = new List<string>() { "Punkteliste", "Stationierung" };
-            _punkteAusgabe = "Punkt 1 \nPunkt 2 \nPunkt 3";
+            
         }
         private string _punkteAusgabe;
             
