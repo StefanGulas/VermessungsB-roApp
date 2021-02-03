@@ -34,7 +34,7 @@
                 <ColumnDefinition Width="*"/>
                 <ColumnDefinition Width="400"/>
             </Grid.ColumnDefinitions>
-            <DockPanel Grid.Row="0" Grid.Column="0" Grid.ColumnSpan="2" Background="#339989">
+            <DockPanel Grid.Row="0" Grid.Column="0" Grid.ColumnSpan="2" Background="#00171F">
                 <StackPanel VerticalAlignment="Top" Margin="10 5 10 0" >
                     <Grid>
                         <!--CustomFrame-->
@@ -59,10 +59,10 @@
             </DockPanel>
         </Grid>
         <Grid Grid.Row="1" Grid.Column="0" Background="#173753">
-                <ListView Background="AliceBlue" Foreground="White" Margin="10 38"  FontSize="16" ItemsSource="{Binding MenuItems}"
+                <ListView Background="AliceBlue" Foreground="White" Margin="10 20"  FontSize="16" ItemsSource="{Binding MenuItems}"
                   SelectedItem="{Binding SelectedItem, UpdateSourceTrigger=PropertyChanged, Mode=TwoWay}" />
         </Grid>
-        <Grid  Grid.Column="1" Grid.Row="1" Background="#BAD7F2">
+        <Grid  Grid.Column="1" Grid.Row="1" Background="#DDDBCB">
             <Grid.RowDefinitions>
                 <RowDefinition/>
                 <RowDefinition Height="Auto"/>
@@ -71,25 +71,25 @@
                 <ColumnDefinition Width="*"/>
                 <ColumnDefinition Width="*"/>
             </Grid.ColumnDefinitions>
-            <TextBlock Grid.Column="0" Grid.Row="0" Margin="20" Height="400" VerticalAlignment="Top" x:Name="PunkteFenster" Foreground="GhostWhite" Background="#173753" Text="{Binding PunkteAusgabe}">
+            <TextBlock Grid.Column="0" Grid.Row="0" Margin="20" Height="400" VerticalAlignment="Top" x:Name="PunkteFenster" Foreground="GhostWhite" Background="#007EA7" Text="{Binding PunkteAusgabe}">
             </TextBlock>
-            <TextBlock Grid.Column="1" Grid.Row="0" Margin="20" Height="400" VerticalAlignment="Top" x:Name="GesäubertesPunkteFenster" Foreground="GhostWhite" Background="#173753"  Text="{Binding GesäubertePunkteAusgabe}">
+            <TextBlock Grid.Column="1" Grid.Row="0" Margin="20" Height="400" VerticalAlignment="Top" x:Name="GesäubertesPunkteFenster" Foreground="GhostWhite" Background="#007EA7"  Text="{Binding GesäubertePunkteAusgabe}">
             </TextBlock>
-            <Button Grid.Row="1" HorizontalAlignment="Left" VerticalAlignment="Bottom" Margin="100 25" x:Name="OpenFileButton" Background="DimGray"  Command="{Binding CreateTaskCommand}" CommandParameter="{Binding}" KeyDown="OpenFileButton_KeyDown"
+            <Button Grid.Row="1" Grid.ColumnSpan="2" HorizontalAlignment="Left" VerticalAlignment="Bottom" Margin="200 25" x:Name="OpenFileButton" Background="DimGray"  Command="{Binding CreateTaskCommand}" CommandParameter="{Binding}" KeyDown="OpenFileButton_KeyDown"
                Click="OpenFileButton_Click"
               Style="{StaticResource MaterialDesignIconButton}"
               ToolTip="Datei öffnen" Cursor="Hand">
                             <materialDesign:PackIcon
                                 Kind="OpenInApp"/>
              </Button>
-            <Button Grid.Row="1" HorizontalAlignment="Center" VerticalAlignment="Bottom" Margin="100 25" x:Name="CleanFileButton" Background="DimGray"  Command="{Binding CreateTaskCommand}" CommandParameter="{Binding}" KeyDown="SaveFileButton_KeyDown"
+            <Button Grid.Row="1" Grid.ColumnSpan="2" HorizontalAlignment="Center" VerticalAlignment="Bottom" Margin="0 25" x:Name="CleanFileButton" Background="DimGray"  Command="{Binding CreateTaskCommand}" CommandParameter="{Binding}" KeyDown="SaveFileButton_KeyDown"
                Click="CleanFileButton_Click"
               Style="{StaticResource MaterialDesignIconButton}"
               ToolTip="Datei 'säubern'" Cursor="Hand">
                 <materialDesign:PackIcon
                                 Kind="Cleaning"/>
             </Button>
-            <Button Grid.Row="1" HorizontalAlignment="Right" VerticalAlignment="Bottom" Margin="100 25" x:Name="SaveFileButton" Background="DimGray"  Command="{Binding CreateTaskCommand}" CommandParameter="{Binding}" KeyDown="SaveFileButton_KeyDown"
+            <Button Grid.Row="1" Grid.ColumnSpan="2" HorizontalAlignment="Right" VerticalAlignment="Bottom" Margin="200 25" x:Name="SaveFileButton" Background="DimGray"  Command="{Binding CreateTaskCommand}" CommandParameter="{Binding}" KeyDown="SaveFileButton_KeyDown"
                Click="SaveFileButton_Click"
               Style="{StaticResource MaterialDesignIconButton}"
               ToolTip="Datei speichern" Cursor="Hand">
