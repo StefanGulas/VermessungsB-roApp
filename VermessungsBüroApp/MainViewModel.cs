@@ -1,0 +1,32 @@
+﻿using System;
+using System.Collections.Generic;
+using System.ComponentModel;
+using System.Runtime.CompilerServices;
+using System.Text;
+
+namespace VermessungsBüroApp
+{
+    public class MainViewModel
+    {
+        private string _selectedItem;
+        private IEnumerable<string> _menuItems;
+
+        public MainViewModel()
+        {
+            _menuItems = new List<string>() { "Punkteliste", "Stationierung" };
+        }
+
+        public IEnumerable<string> MenuItems { get => _menuItems; set => _menuItems = value; }
+        public string SelectedItem
+        {
+            get { return _selectedItem; }
+            set { _selectedItem = value; }
+        }
+        public event PropertyChangedEventHandler PropertyChanged;
+
+        protected virtual void OnPropertyChanged([CallerMemberName] string propertyName = null)
+        {
+            PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(propertyName));
+        }
+    }
+}

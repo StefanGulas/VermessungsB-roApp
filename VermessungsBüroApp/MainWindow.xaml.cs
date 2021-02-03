@@ -15,14 +15,24 @@ using System.Windows.Shapes;
 
 namespace VermessungsBüroApp
 {
-    /// <summary>
-    /// Interaction logic for MainWindow.xaml
-    /// </summary>
+    
     public partial class MainWindow : Window
     {
+        private MainViewModel _viewModel;
+
+        public MainViewModel ViewModel
+        {
+            get { return _viewModel; }
+            set { _viewModel = value; }
+        }
+
+
         public MainWindow()
         {
             InitializeComponent();
+            _viewModel = new MainViewModel();
+            DataContext = _viewModel;
+
         }
 
         private void Window_MouseDown(object sender, MouseButtonEventArgs e)
