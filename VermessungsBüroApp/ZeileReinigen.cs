@@ -10,10 +10,12 @@ namespace VermessungsBüroApp
             string cleanedFile = string.Empty;
             string[] rawList = GenerateRawList(rawText);
             List<string> cleanedList = new List<string>();
+            string newLine = string.Empty;
             for (int i = 0; i < rawList.Length; i++)
             {
                 string cleanedLine = CleanLine(rawList[i]);
-                cleanedFile += "\n" + cleanedLine;
+                if (!string.IsNullOrWhiteSpace(cleanedFile)) newLine = "\n";
+                if (!string.IsNullOrWhiteSpace(cleanedLine)) cleanedFile += newLine + cleanedLine;
             }
             return cleanedFile;
 
@@ -55,27 +57,22 @@ namespace VermessungsBüroApp
             if (cleanedLineItems.Count() == 3)
             {
                 cleanedLineItems.Insert(1, "205");
-                cleanedLineItems.Insert(4, "     0");
+                cleanedLineItems.Insert(4, "0");
             }
-            if (cleanedLineItems.Count() == 4 && cleanedLineItems[1].Length == 2)
+            if (cleanedLineItems.Count() == 4 && cleanedLineItems[1].Length < 4)
             {
-                cleanedLineItems[1] = " " + cleanedLineItems[1];
-                cleanedLineItems.Insert(4, "     0");
-            }
-            else if (cleanedLineItems.Count() == 4 && cleanedLineItems[1].Length == 3)
-            {
-                cleanedLineItems.Insert(4, "     0");
+                cleanedLineItems.Insert(4, "0");
             }
             else if (cleanedLineItems.Count() == 4 && cleanedLineItems[1].Length > 3) cleanedLineItems.Insert(1, "205");
             if (cleanedLineItems[0].Contains("STKE"))
             {
-                cleanedLineItems[0] = cleanedLineItems[0].Replace("STKE", "");
+                cleanedLineItems[0] = cleanedLineItems[0].Replace("STKE", string.Empty);
             }
             if (cleanedLineItems[0].Length < 8) cleanedLineItems[0] = CorrectLength(cleanedLineItems[0], 8);
-            if (cleanedLineItems[1].Length < 3) cleanedLineItems[1] = CorrectLength(cleanedLineItems[1], 3);
+            if (cleanedLineItems[1].Length < 4) cleanedLineItems[1] = CorrectLength(cleanedLineItems[1], 4);
             if (cleanedLineItems[2].Length < 8) cleanedLineItems[2] = CorrectLength(cleanedLineItems[2], 8);
             if (cleanedLineItems[3].Length < 8) cleanedLineItems[3] = CorrectLength(cleanedLineItems[3], 8);
-            if (cleanedLineItems[4].Length < 8) cleanedLineItems[3] = CorrectLength(cleanedLineItems[3], 8);
+            if (cleanedLineItems[4].Length < 8) cleanedLineItems[4] = CorrectLength(cleanedLineItems[4], 7);
             cleanedFullLine = CleanLinesToPrint(cleanedFullLine, cleanedLineItems);
             return cleanedFullLine;
 
@@ -86,7 +83,9 @@ namespace VermessungsBüroApp
             if (item.Length < itemLength)
             {
                 int whiteSpace = itemLength - item.Length;
-                for (int j = 0; j < whiteSpace; j++)
+                int counter = whiteSpace*2;
+                if (itemLength == 7 && item == "0") counter = whiteSpace * 2 - 1;
+                for (int j = 0; j < counter; j++)
                 {
                     result = " " + result;
                 }
@@ -109,7 +108,7 @@ namespace VermessungsBüroApp
             string ds = "3";
             if (cleanedLineItems[1].Contains("96") || cleanedLineItems[1].Contains("98"))
             {
-                cleandFullLine += $"dz = {dz}mm  ds = {ds}mm";
+                cleandFullLine += $" dz = {dz}mm  ds = {ds}mm";
             }
 
             return cleandFullLine;

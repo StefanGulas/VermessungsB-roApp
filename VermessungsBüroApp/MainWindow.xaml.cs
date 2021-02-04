@@ -83,7 +83,7 @@ namespace VermessungsBüroApp
         {
             var zeileReinigen = new ZeileReinigen();
             GesäubertesPunkteFenster.Text = zeileReinigen.CleaneText(PunkteFenster.Text);
-            PunkteFenster.Text = GesäubertesPunkteFenster.Text;
+            //PunkteFenster.Text = GesäubertesPunkteFenster.Text;
         }
 
 
