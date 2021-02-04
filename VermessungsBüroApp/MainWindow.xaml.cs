@@ -145,7 +145,7 @@ namespace VermessungsBüroApp
         private void CleanFileButton_Click(object sender, RoutedEventArgs e)
         {
             var zeileReinigen = new ZeileReinigen();
-//            GesäubertesPunkteFenster. = zeileReinigen.CleaneText(PunkteFenster.Text);
+            GesäubertesPunkteFenster. = zeileReinigen.CleaneText(PunkteFenster.Text);
             //PunkteFenster.Text = GesäubertesPunkteFenster.Text;
         }
 
@@ -154,8 +154,20 @@ namespace VermessungsBüroApp
             SaveFileDialog saveFileDialog = new SaveFileDialog();
             saveFileDialog.Filter = "Text files (*.txt)|*.txt|All files (*.*)|*.*";
             saveFileDialog.FileName = OpenedFileName;
-//            if (saveFileDialog.ShowDialog() == true)
-//                File.WriteAllText(saveFileDialog.FileName, GesäubertesPunkteFenster.Text);
+            if (saveFileDialog.ShowDialog() == true)
+            {
+                TextRange t = new TextRange(PunkteFenster.Document.ContentStart, PunkteFenster.Document.ContentEnd);
+                FileStream file = new FileStream(saveFileDialog.FileName, FileMode.Create);
+                t.Save(file, System.Windows.DataFormats.Text);
+                file.Close();
+            }
+
+
+
+            //SaveFileDialog saveFileDialog = new SaveFileDialog();
+            //saveFileDialog.FileName = OpenedFileName;
+            //            if (saveFileDialog.ShowDialog() == true)
+            //                File.WriteAllText(saveFileDialog.FileName, GesäubertesPunkteFenster.Text);
         }
 
 
