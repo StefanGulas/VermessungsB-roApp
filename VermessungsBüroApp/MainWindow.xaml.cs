@@ -91,83 +91,56 @@ namespace VermessungsBüroApp
 
                 // sniff out what data format you've got
                 string dataFormat = DataFormats.Text;
-                string ext = System.IO.Path.GetExtension(openFileDialog.FileName);
-                if (String.Compare(ext, ".xaml", true) == 0)
+                string extension = System.IO.Path.GetExtension(openFileDialog.FileName);
+                if (String.Compare(extension, ".xaml", true) == 0)
                 {
                     dataFormat = DataFormats.Xaml;
                 }
-                else if (String.Compare(ext, ".rtf", true) == 0)
+                else if (String.Compare(extension, ".txt", true) == 0)
                 {
-                    dataFormat = DataFormats.Rtf;
+                    dataFormat = DataFormats.Text;
                 }
                 documentTextRange.Load(stream, dataFormat);
             }
 
-            //OpenFileDialog openFileDialog = new OpenFileDialog();
-            //openFileDialog.Filter = "Text files (*.txt)|*.txt|All files (*.*)|*.*";
-            //var result = dlg.ShowDialog();
-            //if (result.Value)
-            //{
-            //    TextRange t = new TextRange(Workspace. .ContentStart, Workspace.Document.ContentEnd);
-            //    FileStream file = new FileStream(publicOpenFileDialog.FileName, FileMode.Open);
-            //    t.Load(file, System.Windows.DataFormats.Rtf);
-            //}
-            //openFileDialog.RestoreDirectory = true;
-            //if (openFileDialog.ShowDialog() == true)
-            //{
-            //    LoadTextDocument(openFileDialog.FileName);
-            //    //PunkteFenster.Text = File.ReadAllText(openFileDialog.FileName);
-            //    FileNameCleanedFile = openFileDialog.FileName;
-            //    rawLines = File.ReadAllLines(openFileDialog.FileName);
-            //    OpenedFileName = Path.GetFileName(openFileDialog.FileName);
-            //    publicOpenFileDialog = openFileDialog;
-            //}
         }
-
-        //private void LoadTextDocument(string fileName)
-        //{
-        //    TextRange range;
-        //    System.IO.FileStream fStream;
-        //    if (System.IO.File.Exists(fileName))
-        //    {
-        //        range = newTextRange(PunkteFenster.Document.ContentStart, PunkteFenster.Document.ContentEnd);
-        //        fStream = new System.IO.FileStream(fileName, System.IO.FileMode.OpenOrCreate);
-        //        range.Load(fStream, System.Windows.DataFormats.Text);
-        //        fStream.Close();
-        //    }
-        //}
-        //private TextRange newTextRange(TextPointer contentStart, TextPointer contentEnd)
-        //{
-        //    TextRange textRange = new TextRange(publicOpenFileDialog.Document.ContentStart, rtb.Document.ContentEnd);
-        //    return textRange.Text;
-        //}
 
         private void CleanFileButton_Click(object sender, RoutedEventArgs e)
         {
             var zeileReinigen = new ZeileReinigen();
-            GesäubertesPunkteFenster. = zeileReinigen.CleaneText(PunkteFenster.Text);
+            TextRange rawDocumentTextRange = new TextRange(PunkteFenster.Document.ContentStart, PunkteFenster.Document.ContentEnd);
+            TextRange cleanedDocumentTextRange = new TextRange(GesäubertesPunkteFenster.Document.ContentStart, GesäubertesPunkteFenster.Document.ContentEnd);
+            string cleanedStream = zeileReinigen.CleaneText(rawDocumentTextRange.Text);
+            cleanedDocumentTextRange.Text = cleanedStream;
+            //            GesäubertesPunkteFenster. = 
             //PunkteFenster.Text = GesäubertesPunkteFenster.Text;
         }
 
         private void SaveFileButton_Click(object sender, RoutedEventArgs e)
         {
+
             SaveFileDialog saveFileDialog = new SaveFileDialog();
             saveFileDialog.Filter = "Text files (*.txt)|*.txt|All files (*.*)|*.*";
             saveFileDialog.FileName = OpenedFileName;
             if (saveFileDialog.ShowDialog() == true)
             {
-                TextRange t = new TextRange(PunkteFenster.Document.ContentStart, PunkteFenster.Document.ContentEnd);
-                FileStream file = new FileStream(saveFileDialog.FileName, FileMode.Create);
-                t.Save(file, System.Windows.DataFormats.Text);
-                file.Close();
+                TextRange cleanedTextRange = new TextRange(GesäubertesPunkteFenster.Document.ContentStart, GesäubertesPunkteFenster.Document.ContentEnd);
+                string cleanedText = cleanedTextRange.Text;
+                var zeileReinigen = new ZeileReinigen();
+
+                string textFileText = zeileReinigen.FinalClean(cleanedText);
+                File.WriteAllText(saveFileDialog.FileName, textFileText);
+                //FileStream file = new FileStream(saveFileDialog.FileName, FileMode.Create);
+                //cleanedTextRange.Save(file, System.Windows.DataFormats.Text);
+                //file.Close();
             }
 
 
 
             //SaveFileDialog saveFileDialog = new SaveFileDialog();
             //saveFileDialog.FileName = OpenedFileName;
-            //            if (saveFileDialog.ShowDialog() == true)
-            //                File.WriteAllText(saveFileDialog.FileName, GesäubertesPunkteFenster.Text);
+            //if (saveFileDialog.ShowDialog() == true)
+            //    
         }
 
 
