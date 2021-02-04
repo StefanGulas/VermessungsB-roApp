@@ -108,7 +108,7 @@ namespace VermessungsBüroApp
             string ds = "3";
             if (cleanedLineItems[1].Contains("96") || cleanedLineItems[1].Contains("98"))
             {
-                cleandFullLine += $" dz = {dz}mm  ds = {ds}mm";
+                //cleandFullLine += $" dz = {dz}mm  ds = {ds}mm";
             }
 
             return cleandFullLine;
