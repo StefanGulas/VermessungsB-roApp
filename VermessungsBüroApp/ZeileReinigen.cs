@@ -33,7 +33,6 @@ namespace VermessungsBüroApp
             List<string> cleanedLineItems = new List<string>();
             foreach (var number in numbersInLine)
             {
-                //if (number.Contains("STKE")) number = number.Replace("STKE", "");
                 if (string.IsNullOrWhiteSpace(number) || number.Contains('"') || !number.Any(char.IsDigit)) continue;
                 if (number.All(char.IsDigit) || number.Contains(".") || number.Contains("STKE")) cleanedLineItems.Add(number);
             }
@@ -79,7 +78,6 @@ namespace VermessungsBüroApp
             if (item.Length < itemLength && isFinal == true)
             {
                 int whiteSpace = itemLength - item.Length;
-               // if (itemLength == 7 && item == "0") whiteSpace += 1;
                 if (itemLength == 4) whiteSpace -= 1;
                 for (int j = 0; j < whiteSpace; j++)
                 {
@@ -100,12 +98,12 @@ namespace VermessungsBüroApp
         }
         static string AdjustLineIfAnschlussOderAbschlusspunktLine(List<string> cleanedLineItems, string cleandFullLine)
         {
-            string dz = "1";
-            string ds = "3";
-            if (cleanedLineItems[1].Contains("96") || cleanedLineItems[1].Contains("98"))
-            {
+            //string dz = "1";
+            //string ds = "3";
+            //if (cleanedLineItems[1].Contains("96") || cleanedLineItems[1].Contains("98"))
+            //{
                 //cleandFullLine += $" dz = {dz}mm  ds = {ds}mm";
-            }
+            //}
 
             return cleandFullLine;
         }

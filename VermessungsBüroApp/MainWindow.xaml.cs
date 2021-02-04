@@ -73,34 +73,30 @@ namespace VermessungsBüroApp
             OpenFileDialog openFileDialog = new OpenFileDialog();
             openFileDialog.Filter = "Text files (*.txt)|*.txt|All files (*.*)|*.*";
             var canOpen = openFileDialog.ShowDialog();
-            openFileDialog.RestoreDirectory = true;
-            //if (canOpen == true)
-            //{
-            //    LoadTextDocument(openFileDialog.FileName);
-            //    //PunkteFenster.Text = File.ReadAllText(openFileDialog.FileName);
-            //    FileNameCleanedFile = openFileDialog.FileName;
-            //    rawLines = File.ReadAllLines(openFileDialog.FileName);
-            //    OpenedFileName = Path.GetFileName(openFileDialog.FileName);
-            //    publicOpenFileDialog = openFileDialog;
-            //}
-            //open the file for reading
-            using (FileStream stream = File.OpenRead(openFileDialog.FileName))
+            //openFileDialog.RestoreDirectory = true;
+            try
             {
-                // create a TextRange around the entire document
-                TextRange documentTextRange = new TextRange(PunkteFenster.Document.ContentStart, PunkteFenster.Document.ContentEnd);
 
-                // sniff out what data format you've got
-                string dataFormat = DataFormats.Text;
-                string extension = System.IO.Path.GetExtension(openFileDialog.FileName);
-                if (String.Compare(extension, ".xaml", true) == 0)
+                using (FileStream stream = File.OpenRead(openFileDialog.FileName))
                 {
-                    dataFormat = DataFormats.Xaml;
+                    TextRange documentTextRange = new TextRange(PunkteFenster.Document.ContentStart, PunkteFenster.Document.ContentEnd);
+
+                    string dataFormat = DataFormats.Text;
+                    string extension = System.IO.Path.GetExtension(openFileDialog.FileName);
+                    if (String.Compare(extension, ".xaml", true) == 0)
+                    {
+                        dataFormat = DataFormats.Xaml;
+                    }
+                    else if (String.Compare(extension, ".txt", true) == 0)
+                    {
+                        dataFormat = DataFormats.Text;
+                    }
+                    documentTextRange.Load(stream, dataFormat);
                 }
-                else if (String.Compare(extension, ".txt", true) == 0)
-                {
-                    dataFormat = DataFormats.Text;
-                }
-                documentTextRange.Load(stream, dataFormat);
+            }
+            catch (Exception)
+            {
+
             }
 
         }
@@ -112,35 +108,27 @@ namespace VermessungsBüroApp
             TextRange cleanedDocumentTextRange = new TextRange(GesäubertesPunkteFenster.Document.ContentStart, GesäubertesPunkteFenster.Document.ContentEnd);
             string cleanedStream = zeileReinigen.CleaneText(rawDocumentTextRange.Text);
             cleanedDocumentTextRange.Text = cleanedStream;
-            //            GesäubertesPunkteFenster. = 
-            //PunkteFenster.Text = GesäubertesPunkteFenster.Text;
         }
 
         private void SaveFileButton_Click(object sender, RoutedEventArgs e)
         {
-
-            SaveFileDialog saveFileDialog = new SaveFileDialog();
-            saveFileDialog.Filter = "Text files (*.txt)|*.txt|All files (*.*)|*.*";
-            saveFileDialog.FileName = OpenedFileName;
-            if (saveFileDialog.ShowDialog() == true)
+            TextRange cleanedTextRange = new TextRange(GesäubertesPunkteFenster.Document.ContentStart, GesäubertesPunkteFenster.Document.ContentEnd);
+            string cleanedText = cleanedTextRange.Text;
+            if (!string.IsNullOrWhiteSpace(cleanedText))
             {
-                TextRange cleanedTextRange = new TextRange(GesäubertesPunkteFenster.Document.ContentStart, GesäubertesPunkteFenster.Document.ContentEnd);
-                string cleanedText = cleanedTextRange.Text;
-                var zeileReinigen = new ZeileReinigen();
+                SaveFileDialog saveFileDialog = new SaveFileDialog();
+                saveFileDialog.Filter = "Text files (*.txt)|*.txt|All files (*.*)|*.*";
+                saveFileDialog.FileName = OpenedFileName;
+                if (saveFileDialog.ShowDialog() == true)
+                {
+                    var zeileReinigen = new ZeileReinigen();
 
-                string textFileText = zeileReinigen.FinalClean(cleanedText);
-                File.WriteAllText(saveFileDialog.FileName, textFileText);
-                //FileStream file = new FileStream(saveFileDialog.FileName, FileMode.Create);
-                //cleanedTextRange.Save(file, System.Windows.DataFormats.Text);
-                //file.Close();
+                    string textFileText = zeileReinigen.FinalClean(cleanedText);
+                    File.WriteAllText(saveFileDialog.FileName, textFileText);
+                }
+                PunkteFenster.Document.Blocks.Clear();
+                GesäubertesPunkteFenster.Document.Blocks.Clear();
             }
-
-
-
-            //SaveFileDialog saveFileDialog = new SaveFileDialog();
-            //saveFileDialog.FileName = OpenedFileName;
-            //if (saveFileDialog.ShowDialog() == true)
-            //    
         }
 
 
