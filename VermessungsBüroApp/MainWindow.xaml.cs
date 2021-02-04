@@ -59,7 +59,10 @@ namespace VermessungsBüroApp
         {
 
         }
+
+        public string OpenedFileName { get; set; }
         public string FileNameCleanedFile { get; set; }
+
         private void OpenFileButton_Click(object sender, RoutedEventArgs e)
         {
             OpenFileDialog openFileDialog = new OpenFileDialog();
@@ -69,14 +72,18 @@ namespace VermessungsBüroApp
                 PunkteFenster.Text = File.ReadAllText(openFileDialog.FileName);
                 FileNameCleanedFile = openFileDialog.FileName;
                 rawLines = File.ReadAllLines(openFileDialog.FileName);
-
+                OpenedFileName = Path.GetFileName(openFileDialog.FileName); 
             }
         }
 
 
         private void SaveFileButton_Click(object sender, RoutedEventArgs e)
         {
-
+            SaveFileDialog saveFileDialog = new SaveFileDialog();
+            saveFileDialog.Filter = "Text files (*.txt)|*.txt|All files (*.*)|*.*";
+            saveFileDialog.FileName = OpenedFileName;
+            if (saveFileDialog.ShowDialog() == true)
+                File.WriteAllText(saveFileDialog.FileName, GesäubertesPunkteFenster.Text);
         }
 
         private void CleanFileButton_Click(object sender, RoutedEventArgs e)
