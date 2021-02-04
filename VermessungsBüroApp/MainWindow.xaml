@@ -73,10 +73,12 @@
                 <ColumnDefinition Width="*"/>
                 <ColumnDefinition Width="*"/>
             </Grid.ColumnDefinitions>
-            <TextBlock Grid.Column="0" Grid.Row="0" Margin="20" Height="400" VerticalAlignment="Top" x:Name="PunkteFenster" Foreground="GhostWhite" Background="#007EA7" Text="{Binding PunkteAusgabe}">
+            <TextBox Grid.Column="0" Grid.Row="0" Margin="20" Height="400" VerticalAlignment="Top"  x:Name="PunkteFenster" VerticalScrollBarVisibility="Auto" Foreground="GhostWhite" Background="#007EA7" Text="{Binding PunkteAusgabe}">
+            </TextBox>
+            <ScrollViewer Grid.Column="1" Grid.Row="0">
+            <TextBlock Margin="20" Height="400" VerticalAlignment="Top"  x:Name="GesäubertesPunkteFenster" Foreground="GhostWhite" Background="#007EA7"  Text="{Binding GesäubertePunkteAusgabe}">
             </TextBlock>
-            <TextBlock Grid.Column="1" Grid.Row="0" Margin="20" Height="400" VerticalAlignment="Top" x:Name="GesäubertesPunkteFenster" Foreground="GhostWhite" Background="#007EA7"  Text="{Binding GesäubertePunkteAusgabe}">
-            </TextBlock>
+            </ScrollViewer>
             <Button Grid.Row="1" Grid.ColumnSpan="2" HorizontalAlignment="Left" VerticalAlignment="Bottom" Margin="200 25" x:Name="OpenFileButton" Background="DimGray"  Command="{Binding CreateTaskCommand}" CommandParameter="{Binding}" KeyDown="OpenFileButton_KeyDown"
                Click="OpenFileButton_Click"
               Style="{StaticResource MaterialDesignIconButton}"

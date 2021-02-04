@@ -82,42 +82,8 @@ namespace VermessungsBüroApp
         private void CleanFileButton_Click(object sender, RoutedEventArgs e)
         {
             var zeileReinigen = new ZeileReinigen();
-            List<string> gereinigteListe = new List<string>();
-            foreach (var line in rawLines)
-            {
-                string gereinigteZeile = zeileReinigen.CleaneLine(line);
-                gereinigteListe.Add(gereinigteZeile);
-            }
-            string gereingteDatei = string.Empty;
-            foreach (var item in gereinigteListe)
-            {
-                gereingteDatei += item;
-            }
-            GesäubertesPunkteFenster.Text = gereingteDatei;
-            string newFile1 = @"C:\Users\stefa\OneDrive\Dokumente\Forster\Auswertung1\";
-            string newFile2 = @"C:\Users\stefa\OneDrive\Dokumente\Forster\Auswertung2\";
-            newFile1 += Path.GetFileName(FileNameCleanedFile);
-            newFile2 += Path.GetFileName(FileNameCleanedFile);
-
-            using (StreamWriter writer = new StreamWriter(newFile1))
-            {
-                foreach (var line in gereinigteListe) writer.WriteLine(line);
-            }
-            using (StreamWriter writer = new StreamWriter(newFile2))
-            {
-                foreach (var line in gereinigteListe) writer.WriteLine(line);
-            }
-            //if (line.Count() < 3) continue;
-            //    if (line.Count() == 3)
-            //    {
-            //        line.Insert(1, "205");
-            //        line.Insert(4, "     0");
-            //    }
-            //    if (line.Count() == 4 && line[1].Length == 2)
-            //    {
-            //        cleanedLineItems[1] = " " + cleanedLineItems[1];
-            //        cleanedLineItems.Insert(4, "     0");
-            //    }
+            GesäubertesPunkteFenster.Text = zeileReinigen.CleaneText(PunkteFenster.Text);
+            PunkteFenster.Text = GesäubertesPunkteFenster.Text;
         }
 
 
