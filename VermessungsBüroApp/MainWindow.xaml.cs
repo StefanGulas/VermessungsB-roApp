@@ -32,6 +32,7 @@ namespace VermessungsBüroApp
             DataContext = _viewModel;
             string[] rawLines = new string[] { };
             MessPunkteListe.Visibility = Visibility.Hidden;
+            Stationierung.Visibility = Visibility.Hidden;
         }
 
         private void Window_MouseDown(object sender, MouseButtonEventArgs e)
@@ -75,7 +76,6 @@ namespace VermessungsBüroApp
             OpenFileDialog openFileDialog = new OpenFileDialog();
             openFileDialog.Filter = "Text files (*.txt)|*.txt|All files (*.*)|*.*";
             var canOpen = openFileDialog.ShowDialog();
-            //openFileDialog.RestoreDirectory = true;
             try
             {
 
@@ -135,11 +135,52 @@ namespace VermessungsBüroApp
 
         private void MessPunkteListeButton_Click(object sender, RoutedEventArgs e)
         {
-            if (MessPunkteListe.Visibility == Visibility.Hidden) MessPunkteListe.Visibility = Visibility.Visible;
-            else MessPunkteListe.Visibility = Visibility.Hidden;
+            if (MessPunkteListe.Visibility == Visibility.Hidden)    
+            {
+                MessPunkteListe.Visibility = Visibility.Visible;
+                Stationierung.Visibility = Visibility.Hidden;
+            }
+            else
+            {
+                MessPunkteListe.Visibility = Visibility.Hidden;
+                Stationierung.Visibility = Visibility.Hidden;
+                PunkteFenster.Document.Blocks.Clear();
+                GesäubertesPunkteFenster.Document.Blocks.Clear();
+                StationierungsFenster.Document.Blocks.Clear();
+                GesäubertesStationierungsFenster.Document.Blocks.Clear();
+            }
         }
 
         private void StationierungButton_Click(object sender, RoutedEventArgs e)
+        {
+
+            if (Stationierung.Visibility == Visibility.Hidden)
+            {
+                MessPunkteListe.Visibility = Visibility.Hidden;
+                Stationierung.Visibility = Visibility.Visible;
+            }
+            else
+            {
+                MessPunkteListe.Visibility = Visibility.Hidden;
+                Stationierung.Visibility = Visibility.Hidden;
+                StationierungsFenster.Document.Blocks.Clear();
+                GesäubertesStationierungsFenster.Document.Blocks.Clear();
+                PunkteFenster.Document.Blocks.Clear();
+                GesäubertesPunkteFenster.Document.Blocks.Clear();
+            }
+        }
+
+        private void OpenStationierungsFileButton_KeyDown(object sender, KeyEventArgs e)
+        {
+
+        }
+
+        private void CleanStationierungsFileButton_Click(object sender, RoutedEventArgs e)
+        {
+
+        }
+
+        private void SaveStationierungsFileButton_Click(object sender, RoutedEventArgs e)
         {
 
         }
