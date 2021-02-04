@@ -27,7 +27,7 @@ namespace VermessungsBüroApp
             _viewModel = new MainViewModel();
             DataContext = _viewModel;
             string[] rawLines = new string[] { };
-
+            MessPunkteListe.Visibility = Visibility.Hidden;
         }
 
         private void Window_MouseDown(object sender, MouseButtonEventArgs e)
@@ -120,7 +120,17 @@ namespace VermessungsBüroApp
             //    }
         }
 
-    
+
+        private void MessPunkteListeButton_Click(object sender, RoutedEventArgs e)
+        {
+            if (MessPunkteListe.Visibility == Visibility.Hidden) MessPunkteListe.Visibility = Visibility.Visible;
+            else MessPunkteListe.Visibility = Visibility.Hidden;
         }
+
+        private void StationierungButton_Click(object sender, RoutedEventArgs e)
+        {
+
+        }
+    }
     }
 

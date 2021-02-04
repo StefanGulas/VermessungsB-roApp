@@ -59,10 +59,12 @@
             </DockPanel>
         </Grid>
         <Grid Grid.Row="1" Grid.Column="0" Background="#173753">
-                <ListView Background="AliceBlue" Foreground="White" Margin="10 20"  FontSize="16" ItemsSource="{Binding MenuItems}"
-                  SelectedItem="{Binding SelectedItem, UpdateSourceTrigger=PropertyChanged, Mode=TwoWay}" />
+            <StackPanel>
+                <Button x:Name="MessPunkteListeButton" Click="MessPunkteListeButton_Click" Margin="10 20 10 8" Content="Messpunkte" Cursor="Hand"/>
+                <Button x:Name="StationierungButton" Click="StationierungButton_Click"  Margin="10 8" Content="Stationierung" Cursor="Hand"/>
+            </StackPanel>
         </Grid>
-        <Grid  Grid.Column="1" Grid.Row="1" Background="#DDDBCB">
+        <Grid x:Name="MessPunkteListe" Grid.Column="1" Grid.Row="1" Background="#DDDBCB" >
             <Grid.RowDefinitions>
                 <RowDefinition/>
                 <RowDefinition Height="Auto"/>
