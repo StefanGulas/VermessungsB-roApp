@@ -70,6 +70,8 @@ namespace VermessungsBüroApp
 
         private void OpenFileButton_Click(object sender, RoutedEventArgs e)
         {
+            PunkteFenster.Document.Blocks.Clear();
+            GesäubertesPunkteFenster.Document.Blocks.Clear();
             OpenFileDialog openFileDialog = new OpenFileDialog();
             openFileDialog.Filter = "Text files (*.txt)|*.txt|All files (*.*)|*.*";
             var canOpen = openFileDialog.ShowDialog();
@@ -96,7 +98,6 @@ namespace VermessungsBüroApp
             }
             catch (Exception)
             {
-
             }
 
         }
