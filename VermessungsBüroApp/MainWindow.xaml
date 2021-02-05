@@ -75,27 +75,27 @@
                 <ColumnDefinition Width="*"/>
                 <ColumnDefinition Width="*"/>
             </Grid.ColumnDefinitions>
-            <Label Margin="20 5 0 0" Content="Rohdaten Messpunkte" Grid.Column="0" Grid.Row="0" FontFamily="Roboto"/>
-            <RichTextBox Grid.Column="0" Grid.Row="1" Margin="20 5" Padding="5 2" VerticalAlignment="Stretch" HorizontalAlignment="Stretch" Block.LineHeight="0.1"  x:Name="PunkteFenster" VerticalScrollBarVisibility="Auto" HorizontalScrollBarVisibility="Auto" Foreground="GhostWhite" Background="#007EA7" >
+            <Label Margin="20 5 0 0" Content="Rohdaten Messpunkte" Grid.Column="0" Grid.Row="0" FontSize="14" FontStyle="Italic" Foreground="#00171F" FontFamily="Roboto"/>
+            <RichTextBox Grid.Column="0" Grid.Row="1" Margin="20 0 20 5" Padding="5 2" VerticalAlignment="Stretch" HorizontalAlignment="Stretch" Block.LineHeight="0.1"  x:Name="PunkteFenster" VerticalScrollBarVisibility="Auto" HorizontalScrollBarVisibility="Auto" Foreground="GhostWhite" Background="#007EA7" >
             </RichTextBox>
-            <Label Margin="20 5 0 0" Content="Gesäuberte Daten Messpunkte" Grid.Column="1" Grid.Row="0" FontFamily="Roboto"/>
-            <RichTextBox Grid.Column="1" Grid.Row="1" Margin="20 5" Padding="5 2" Block.LineHeight="0.1" VerticalAlignment="Stretch" HorizontalAlignment="Stretch" VerticalScrollBarVisibility="Auto" HorizontalScrollBarVisibility="Auto" x:Name="GesäubertesPunkteFenster" Foreground="GhostWhite" Background="#007EA7" >
+            <Label Margin="20 5 0 0" Content="Gesäuberte Daten Messpunkte" Grid.Column="1" Grid.Row="0" FontSize="14" FontStyle="Italic" Foreground="#00171F" FontFamily="Roboto"/>
+            <RichTextBox Grid.Column="1" Grid.Row="1" Margin="20 0 20 5" Padding="5 2" Block.LineHeight="0.1" VerticalAlignment="Stretch" HorizontalAlignment="Stretch" VerticalScrollBarVisibility="Auto" HorizontalScrollBarVisibility="Auto" x:Name="GesäubertesPunkteFenster" Foreground="GhostWhite" Background="#007EA7" >
             </RichTextBox>
-            <Button Grid.Row="2" Grid.ColumnSpan="2" HorizontalAlignment="Left" VerticalAlignment="Bottom" Margin="200 15" x:Name="OpenFileButton" Background="DimGray"  Command="{Binding CreateTaskCommand}" CommandParameter="{Binding}" KeyDown="OpenFileButton_KeyDown"
+            <Button Grid.Row="2" Grid.ColumnSpan="2" HorizontalAlignment="Left" VerticalAlignment="Bottom" Margin="200 15" x:Name="OpenFileButton" Background="DimGray"  KeyDown="OpenFileButton_KeyDown"
                Click="OpenFileButton_Click"
               Style="{StaticResource MaterialDesignIconButton}"
               ToolTip="Datei öffnen" Cursor="Hand">
                             <materialDesign:PackIcon
                                 Kind="OpenInApp"/>
              </Button>
-            <Button Grid.Row="2" Grid.ColumnSpan="2" HorizontalAlignment="Center" VerticalAlignment="Bottom" Margin="0 15" x:Name="CleanFileButton" Background="DimGray"  Command="{Binding CreateTaskCommand}" CommandParameter="{Binding}" KeyDown="SaveFileButton_KeyDown"
+            <Button Grid.Row="2" Grid.ColumnSpan="2" HorizontalAlignment="Center" VerticalAlignment="Bottom" Margin="0 15" x:Name="CleanFileButton" Background="DimGray"   KeyDown="SaveFileButton_KeyDown"
                Click="CleanFileButton_Click"
               Style="{StaticResource MaterialDesignIconButton}"
               ToolTip="Datei 'säubern'" Cursor="Hand">
-                <materialDesign:PackIcon
-                                Kind="Cleaning"/>
+                <materialDesign:PackIcon Height="30" Width="30"
+                                Kind="ArrowRotateLeft"/>
             </Button>
-            <Button Grid.Row="2" Grid.ColumnSpan="2" HorizontalAlignment="Right" VerticalAlignment="Bottom" Margin="200 15" x:Name="SaveFileButton" Background="DimGray"  Command="{Binding CreateTaskCommand}" CommandParameter="{Binding}" KeyDown="SaveFileButton_KeyDown"
+            <Button Grid.Row="2" Grid.ColumnSpan="2" HorizontalAlignment="Right" VerticalAlignment="Bottom" Margin="200 15" x:Name="SaveFileButton" Background="DimGray"   KeyDown="SaveFileButton_KeyDown"
                Click="SaveFileButton_Click"
               Style="{StaticResource MaterialDesignIconButton}"
               ToolTip="Datei speichern" Cursor="Hand">
@@ -113,27 +113,27 @@
                 <ColumnDefinition Width="*"/>
                 <ColumnDefinition Width="*"/>
             </Grid.ColumnDefinitions>
-            <Label Margin="20 5 0 0" Content="Rohdaten Stationierung" Grid.Column="0" Grid.Row="0" FontFamily="Roboto"/>
-            <RichTextBox Grid.Column="0" Grid.Row="1" Margin="20 5" Padding="5 2"  VerticalAlignment="Stretch" HorizontalAlignment="Stretch" Block.LineHeight="0.1"  x:Name="StationierungsFenster" VerticalScrollBarVisibility="Auto" HorizontalScrollBarVisibility="Auto" Foreground="GhostWhite" Background="#007EA7" >  
+            <Label Margin="20 5 0 0" Content="Rohdaten Stationierung" Grid.Column="0" Grid.Row="0" FontSize="14" FontStyle="Italic" Foreground="#00171F" FontFamily="Roboto"/>
+            <RichTextBox Grid.Column="0" Grid.Row="1" Margin="20 0 20 5" Padding="5 2"  VerticalAlignment="Stretch" HorizontalAlignment="Stretch" Block.LineHeight="0.1"  x:Name="StationierungsFenster" VerticalScrollBarVisibility="Auto" HorizontalScrollBarVisibility="Auto" Foreground="GhostWhite" Background="#007EA7" >  
             </RichTextBox>
-            <Label Margin="20 5 0 0" Content="Gesäuberte Daten Stationierung" Grid.Column="1" Grid.Row="0" FontFamily="Roboto"/>
-            <RichTextBox Grid.Column="1" Grid.Row="1" Margin="20 5" Padding="5 2" Block.LineHeight="0.1" VerticalAlignment="Stretch" HorizontalAlignment="Stretch" VerticalScrollBarVisibility="Auto" HorizontalScrollBarVisibility="Auto" x:Name="GesäubertesStationierungsFenster" Foreground="GhostWhite" Background="#007EA7" >
+            <Label Margin="20 5 0 0" Content="Gesäuberte Daten Stationierung" Grid.Column="1" Grid.Row="0" FontSize="14" FontStyle="Italic" Foreground="#00171F" FontFamily="Roboto"/>
+            <RichTextBox Grid.Column="1" Grid.Row="1" Margin="20 0 20 5" Padding="5 2" Block.LineHeight="0.1" VerticalAlignment="Stretch" HorizontalAlignment="Stretch" VerticalScrollBarVisibility="Auto" HorizontalScrollBarVisibility="Auto" x:Name="GesäubertesStationierungsFenster" Foreground="GhostWhite" Background="#007EA7" >
             </RichTextBox>
-            <Button Grid.Row="2" Grid.ColumnSpan="2" HorizontalAlignment="Left" VerticalAlignment="Bottom" Margin="200 15" x:Name="OpenStationierungsFileButton" Background="DimGray"  Command="{Binding CreateTaskCommand}" CommandParameter="{Binding}" 
+            <Button Grid.Row="2" Grid.ColumnSpan="2" HorizontalAlignment="Left" VerticalAlignment="Bottom" Margin="200 15" x:Name="OpenStationierungsFileButton" Background="DimGray"   
                Click="OpenStationierungsFileButton_Click"
               Style="{StaticResource MaterialDesignIconButton}"
               ToolTip="Datei öffnen" Cursor="Hand">
                 <materialDesign:PackIcon
                                 Kind="OpenInApp"/>
             </Button>
-            <Button Grid.Row="2" Grid.ColumnSpan="2" HorizontalAlignment="Center" VerticalAlignment="Bottom" Margin="0 15" x:Name="CleanStationierungsFileButton" Background="DimGray"  Command="{Binding CreateTaskCommand}" CommandParameter="{Binding}" KeyDown="SaveFileButton_KeyDown"
+            <Button Grid.Row="2" Grid.ColumnSpan="2" HorizontalAlignment="Center" VerticalAlignment="Bottom" Margin="0 15" x:Name="CleanStationierungsFileButton" Background="DimGray"   KeyDown="SaveFileButton_KeyDown"
                Click="CleanStationierungsFileButton_Click"
               Style="{StaticResource MaterialDesignIconButton}"
               ToolTip="Datei 'säubern'" Cursor="Hand">
-                <materialDesign:PackIcon
-                                Kind="Cleaning"/>
+                <materialDesign:PackIcon Height="30" Width="30"
+                                Kind="ArrowRotateLeft"/>
             </Button>
-            <Button Grid.Row="2" Grid.ColumnSpan="2" HorizontalAlignment="Right" VerticalAlignment="Bottom" Margin="200 15" x:Name="SaveStationierungsFileButton" Background="DimGray"  Command="{Binding CreateTaskCommand}" CommandParameter="{Binding}" KeyDown="SaveFileButton_KeyDown"
+            <Button Grid.Row="2" Grid.ColumnSpan="2" HorizontalAlignment="Right" VerticalAlignment="Bottom" Margin="200 15" x:Name="SaveStationierungsFileButton" Background="DimGray"   KeyDown="SaveFileButton_KeyDown"
                Click="SaveStationierungsFileButton_Click"
               Style="{StaticResource MaterialDesignIconButton}"
               ToolTip="Datei speichern" Cursor="Hand">
