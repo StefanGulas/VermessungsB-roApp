@@ -230,6 +230,15 @@ namespace VermessungsBüroApp
             }
         }
 
+        private void MaximizeWindowSize_Click(object sender, RoutedEventArgs e)
+        {
+            Application.Current.MainWindow.WindowState = WindowState.Maximized;
+        }
+
+        private void NormalizeWindowSize_Click(object sender, RoutedEventArgs e)
+        {
+            Application.Current.MainWindow.WindowState = WindowState.Normal;
+        }
     }
 
 }

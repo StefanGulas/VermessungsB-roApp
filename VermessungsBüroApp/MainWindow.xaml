@@ -44,12 +44,13 @@
                            <materialDesign:PackIcon Margin="105 10 0 -10" Height="40" Width="40" VerticalAlignment="Bottom" Kind="Scale"  Foreground="{DynamicResource MaterialDesignPaper}"/>
                         </TextBlock>
                         <StackPanel Orientation="Horizontal" HorizontalAlignment="Right" Margin="0,0">
-                            <Button Width="30" Height="30" Background="{x:Null}" BorderBrush="{x:Null}" Padding="0" Foreground="Gray">
-                                <materialDesign:PackIcon Kind="BellOutline" Foreground="{DynamicResource MaterialDesignPaper}"/>
+                            <Button x:Name="NormalizeWindowSize" Width="30" Height="30" Background="{x:Null}" BorderBrush="{x:Null}" Padding="0" Foreground="Gray" Margin="5 0 5 0" Cursor="Hand" Click="NormalizeWindowSize_Click">
+                                <materialDesign:PackIcon Kind="WindowRestore" ToolTip="Einstellungen" Foreground="{DynamicResource MaterialDesignPaper}"/>
                             </Button>
-                            <Button x:Name="SettingsButton" Width="30" Height="30" Background="{x:Null}" BorderBrush="{x:Null}" Padding="0" Foreground="Gray" Margin="5 0 5 0" Cursor="Hand" Click="SettingsButton_Click">
-                                <materialDesign:PackIcon Kind="Settings" ToolTip="Einstellungen" Foreground="{DynamicResource MaterialDesignPaper}"/>
+                            <Button x:Name="MaximizeWindowSize"  Width="30" Height="30" Background="{x:Null}" BorderBrush="{x:Null}" Padding="0" Foreground="Gray" Click="MaximizeWindowSize_Click">
+                                <materialDesign:PackIcon Kind="WindowMaximize" Foreground="{DynamicResource MaterialDesignPaper}"/>
                             </Button>
+                            
                             <Button x:Name="ButtonTurnOff" Width="30" Height="30" Background="{x:Null}" BorderBrush="{x:Null}" Padding="0" Foreground="Gray" ToolTip="Schließen"  Click="ButtonTurnOff_Click" Cursor="Hand">
                                 <materialDesign:PackIcon Kind="Power" Foreground="{DynamicResource MaterialDesignPaper}"/>
                             </Button>

@@ -55,10 +55,6 @@ namespace VermessungsBüroApp
                 if (RawList[i].Contains("=======") && RawList[i + 2].Contains("alle TPS-Messungen")) keepAddingLines = false;
                
                 if(keepAddingLines) cleanedList.Add(RawList[i]);
-
-
-
-
             }
 
             for (int i = 0; i < cleanedList.Count; i++)
@@ -67,7 +63,5 @@ namespace VermessungsBüroApp
             }
             return CleanedFile;
         }
-
-
     }
 }
