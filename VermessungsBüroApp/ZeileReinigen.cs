@@ -20,7 +20,7 @@ namespace VermessungsBüroApp
             return cleanedFile;
         }
 
-        private string[] GenerateRawList(string rawText)
+        public string[] GenerateRawList(string rawText)
         {
             string[] rawList = rawText.Split('\n');
             return rawList;

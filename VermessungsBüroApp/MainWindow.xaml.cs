@@ -134,7 +134,7 @@ namespace VermessungsBüroApp
 
         private void MessPunkteListeButton_Click(object sender, RoutedEventArgs e)
         {
-            if (MessPunkteListe.Visibility == Visibility.Hidden)    
+            if (MessPunkteListe.Visibility == Visibility.Hidden)
             {
                 MessPunkteListe.Visibility = Visibility.Visible;
                 Stationierung.Visibility = Visibility.Hidden;
@@ -169,37 +169,6 @@ namespace VermessungsBüroApp
             }
         }
 
-
-        private void CleanStationierungsFileButton_Click(object sender, RoutedEventArgs e)
-        {
-            var zeileReinigen = new ZeileReinigen();
-            TextRange rawDocumentTextRange = new TextRange(PunkteFenster.Document.ContentStart, PunkteFenster.Document.ContentEnd);
-            TextRange cleanedDocumentTextRange = new TextRange(GesäubertesPunkteFenster.Document.ContentStart, GesäubertesPunkteFenster.Document.ContentEnd);
-            string cleanedStream = zeileReinigen.CleaneText(rawDocumentTextRange.Text);
-            cleanedDocumentTextRange.Text = cleanedStream;
-        }
-
-        private void SaveStationierungsFileButton_Click(object sender, RoutedEventArgs e)
-        {
-            TextRange cleanedTextRange = new TextRange(GesäubertesPunkteFenster.Document.ContentStart, GesäubertesPunkteFenster.Document.ContentEnd);
-            string cleanedText = cleanedTextRange.Text;
-            if (!string.IsNullOrWhiteSpace(cleanedText))
-            {
-                SaveFileDialog saveFileDialog = new SaveFileDialog();
-                saveFileDialog.Filter = "Text files (*.txt)|*.txt|All files (*.*)|*.*";
-                saveFileDialog.FileName = OpenedFileName;
-                if (saveFileDialog.ShowDialog() == true)
-                {
-                    var zeileReinigen = new ZeileReinigen();
-
-                    string textFileText = zeileReinigen.FinalClean(cleanedText);
-                    File.WriteAllText(saveFileDialog.FileName, textFileText);
-                }
-                PunkteFenster.Document.Blocks.Clear();
-                GesäubertesPunkteFenster.Document.Blocks.Clear();
-            }
-        }
-
         private void OpenStationierungsFileButton_Click(object sender, RoutedEventArgs e)
         {
             PunkteFenster.Document.Blocks.Clear();
@@ -229,10 +198,41 @@ namespace VermessungsBüroApp
             }
             catch (Exception)
             {
-            
-        }
+
+            }
 
         }
+
+        private void CleanStationierungsFileButton_Click(object sender, RoutedEventArgs e)
+        {
+            var stationierungReinigen = new StationierungReinigen();
+            TextRange rawDocumentTextRange = new TextRange(StationierungsFenster.Document.ContentStart, StationierungsFenster.Document.ContentEnd);
+            TextRange cleanedDocumentTextRange = new TextRange(GesäubertesStationierungsFenster.Document.ContentStart, GesäubertesStationierungsFenster.Document.ContentEnd);
+            string cleanedStream = stationierungReinigen.Reinige(rawDocumentTextRange.Text);
+            cleanedDocumentTextRange.Text = cleanedStream;
+        }
+
+        private void SaveStationierungsFileButton_Click(object sender, RoutedEventArgs e)
+        {
+            TextRange cleanedTextRange = new TextRange(GesäubertesPunkteFenster.Document.ContentStart, GesäubertesPunkteFenster.Document.ContentEnd);
+            string cleanedText = cleanedTextRange.Text;
+            if (!string.IsNullOrWhiteSpace(cleanedText))
+            {
+                SaveFileDialog saveFileDialog = new SaveFileDialog();
+                saveFileDialog.Filter = "Text files (*.txt)|*.txt|All files (*.*)|*.*";
+                saveFileDialog.FileName = OpenedFileName;
+                if (saveFileDialog.ShowDialog() == true)
+                {
+                    var stationierungReinigen = new StationierungReinigen();
+
+//                    string textFileText = stationierungReinigen.FinalClean(cleanedText);
+//                    File.WriteAllText(saveFileDialog.FileName, textFileText);
+                }
+                PunkteFenster.Document.Blocks.Clear();
+                GesäubertesPunkteFenster.Document.Blocks.Clear();
+            }
+        }
+
     }
 
 }
