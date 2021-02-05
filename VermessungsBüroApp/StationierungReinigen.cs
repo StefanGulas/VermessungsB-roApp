@@ -65,14 +65,6 @@ namespace VermessungsBüroApp
                 CleanedFile += "\n" + cleanedList[i];
             }
             return CleanedFile;
-
-
-
-
-
-
-
-            return "Test";
         }
 
 

@@ -214,7 +214,7 @@ namespace VermessungsBüroApp
 
         private void SaveStationierungsFileButton_Click(object sender, RoutedEventArgs e)
         {
-            TextRange cleanedTextRange = new TextRange(GesäubertesPunkteFenster.Document.ContentStart, GesäubertesPunkteFenster.Document.ContentEnd);
+            TextRange cleanedTextRange = new TextRange(GesäubertesStationierungsFenster.Document.ContentStart, GesäubertesStationierungsFenster.Document.ContentEnd);
             string cleanedText = cleanedTextRange.Text;
             if (!string.IsNullOrWhiteSpace(cleanedText))
             {
@@ -223,13 +223,10 @@ namespace VermessungsBüroApp
                 saveFileDialog.FileName = OpenedFileName;
                 if (saveFileDialog.ShowDialog() == true)
                 {
-                    var stationierungReinigen = new StationierungReinigen();
-
-//                    string textFileText = stationierungReinigen.FinalClean(cleanedText);
-//                    File.WriteAllText(saveFileDialog.FileName, textFileText);
+                    File.WriteAllText(saveFileDialog.FileName, cleanedText);
                 }
-                PunkteFenster.Document.Blocks.Clear();
-                GesäubertesPunkteFenster.Document.Blocks.Clear();
+                StationierungsFenster.Document.Blocks.Clear();
+                GesäubertesStationierungsFenster.Document.Blocks.Clear();
             }
         }
 
