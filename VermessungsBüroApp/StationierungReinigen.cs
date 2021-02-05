@@ -52,9 +52,10 @@ namespace VermessungsBüroApp
                     i += 8;
                     }
 
+                if (RawList[i].Contains("=======") && RawList[i + 2].Contains("alle TPS-Messungen")) keepAddingLines = false;
+               
                 if(keepAddingLines) cleanedList.Add(RawList[i]);
 
-                if (RawList[i].Contains("=======") && RawList[i + 2].Contains("alle TPS-Messungen")) keepAddingLines = false;
 
 
 
