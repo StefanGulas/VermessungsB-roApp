@@ -56,10 +56,11 @@ namespace VermessungsBüroApp
                
                 if(keepAddingLines) cleanedList.Add(RawList[i]);
             }
-
+            string newLine = "";
             for (int i = 0; i < cleanedList.Count; i++)
             {
-                CleanedFile += "\n" + cleanedList[i];
+                CleanedFile += newLine + cleanedList[i];
+                newLine = "\n";
             }
             return CleanedFile;
         }

@@ -4,6 +4,8 @@ using System;
 using System.Collections.Generic;
 using System.IO;
 using System.Linq;
+using System.Text;
+using System.Text.Unicode;
 using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Documents;
@@ -199,33 +201,9 @@ namespace VermessungsBüroApp
             PunkteFenster.Document.Blocks.Clear();
             GesäubertesStationierungsFenster.Document.Blocks.Clear();
             OpenFileDialog openFileDialog = new OpenFileDialog();
-            openFileDialog.Filter = "Text files (*.txt)|*.txt|All files (*.*)|*.*";
             var canOpen = openFileDialog.ShowDialog();
-            try
-            {
-
-                using (FileStream stream = File.OpenRead(openFileDialog.FileName))
-                {
-                    TextRange documentTextRange = new TextRange(StationierungsFenster.Document.ContentStart, StationierungsFenster.Document.ContentEnd);
-
-                    string dataFormat = DataFormats.Text;
-                    string extension = System.IO.Path.GetExtension(openFileDialog.FileName);
-                    if (String.Compare(extension, ".xaml", true) == 0)
-                    {
-                        dataFormat = DataFormats.Xaml;
-                    }
-                    else if (String.Compare(extension, ".txt", true) == 0)
-                    {
-                        dataFormat = DataFormats.Text;
-                    }
-                    documentTextRange.Load(stream, dataFormat);
-                }
-            }
-            catch (Exception)
-            {
-
-            }
-
+            string testText = File.ReadAllText(openFileDialog.FileName, Encoding.UTF7);
+            StationierungsFenster.AppendText(testText);
         }
 
         private void CleanStationierungsFileButton_Click(object sender, RoutedEventArgs e)
