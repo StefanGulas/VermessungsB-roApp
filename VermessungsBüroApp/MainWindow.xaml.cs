@@ -5,8 +5,10 @@ using System.Collections.Generic;
 using System.IO;
 using System.Linq;
 using System.Windows;
+using System.Windows.Controls;
 using System.Windows.Documents;
 using System.Windows.Input;
+using System.Windows.Media;
 using Path = System.IO.Path;
 
 namespace VermessungsBüroApp
@@ -16,8 +18,9 @@ namespace VermessungsBüroApp
     {
         private MainViewModel _viewModel;
         private OpenFileDialog publicOpenFileDialog;
-
-        public MainViewModel ViewModel
+        private Brush newDarkBlue;
+        private Brush newLightBlue;
+        public MainViewModel ViewMdel
         {
             get { return _viewModel; }
             set { _viewModel = value; }
@@ -33,6 +36,10 @@ namespace VermessungsBüroApp
             string[] rawLines = new string[] { };
             MessPunkteListe.Visibility = Visibility.Hidden;
             Stationierung.Visibility = Visibility.Hidden;
+            newDarkBlue = new SolidColorBrush((Color)ColorConverter.ConvertFromString("#173753"));
+            newLightBlue = new SolidColorBrush((Color)ColorConverter.ConvertFromString("#007EA7"));
+            MessPunkteListeButton.Background = newDarkBlue;
+            StationierungButton.Background = newDarkBlue;
         }
 
         private void Window_MouseDown(object sender, MouseButtonEventArgs e)
@@ -134,10 +141,20 @@ namespace VermessungsBüroApp
 
         private void MessPunkteListeButton_Click(object sender, RoutedEventArgs e)
         {
+            if (MessPunkteListeButton.Background == newDarkBlue)
+            {
+                StationierungButton.Background = newDarkBlue;
+                MessPunkteListeButton.Background = newLightBlue;
+            }
+            else MessPunkteListeButton.Background = newDarkBlue;
+
+
             if (MessPunkteListe.Visibility == Visibility.Hidden)
             {
                 MessPunkteListe.Visibility = Visibility.Visible;
                 Stationierung.Visibility = Visibility.Hidden;
+                StationierungsFenster.Document.Blocks.Clear();
+                GesäubertesStationierungsFenster.Document.Blocks.Clear();
             }
             else
             {
@@ -152,11 +169,19 @@ namespace VermessungsBüroApp
 
         private void StationierungButton_Click(object sender, RoutedEventArgs e)
         {
+            if (StationierungButton.Background == newDarkBlue)
+            {
+                StationierungButton.Background = newLightBlue;
+                MessPunkteListeButton.Background = newDarkBlue;
+            }
+            else StationierungButton.Background = newDarkBlue;
 
             if (Stationierung.Visibility == Visibility.Hidden)
             {
                 MessPunkteListe.Visibility = Visibility.Hidden;
                 Stationierung.Visibility = Visibility.Visible;
+                PunkteFenster.Document.Blocks.Clear();
+                GesäubertesPunkteFenster.Document.Blocks.Clear();
             }
             else
             {
@@ -239,6 +264,8 @@ namespace VermessungsBüroApp
         {
             Application.Current.MainWindow.WindowState = WindowState.Normal;
         }
+
+
     }
 
 }

@@ -61,8 +61,8 @@
         </Grid>
         <Grid Grid.Row="1" Grid.Column="0" Background="#173753">
             <StackPanel>
-                <Button x:Name="MessPunkteListeButton" Click="MessPunkteListeButton_Click" Margin="10 20 10 8" Content="Messpunkte" Cursor="Hand"/>
-                <Button x:Name="StationierungButton" Click="StationierungButton_Click"  Margin="10 8" Content="Stationierung" Style="{StaticResource MaterialDesignFlatButton}" Cursor="Hand"/>
+                <Button x:Name="MessPunkteListeButton" Click="MessPunkteListeButton_Click" Margin="10 20 10 8" Content="Messpunkte" Cursor="Hand" Style="{StaticResource MaterialDesignFlatDarkBgButton}" />
+                <Button x:Name="StationierungButton" Click="StationierungButton_Click" Margin="10 8" Content="Stationierung" Style="{StaticResource MaterialDesignFlatDarkBgButton}" Cursor="Hand"/>
             </StackPanel>
         </Grid>
         <Grid x:Name="MessPunkteListe" Grid.Column="1" Grid.Row="1" Background="#DDDBCB" >
@@ -114,10 +114,10 @@
                 <ColumnDefinition Width="*"/>
             </Grid.ColumnDefinitions>
             <Label Margin="20 5 0 0" Content="Rohdaten Stationierung" Grid.Column="0" Grid.Row="0" FontFamily="Roboto"/>
-            <RichTextBox Grid.Column="0" Grid.Row="1" Margin="20 5" Padding="5 2"  VerticalAlignment="Stretch" HorizontalAlignment="Stretch" Block.LineHeight="0.1"  x:Name="StationierungsFenster" VerticalScrollBarVisibility="Auto" HorizontalScrollBarVisibility="Auto" Foreground="GhostWhite" Background="#173753" >  
+            <RichTextBox Grid.Column="0" Grid.Row="1" Margin="20 5" Padding="5 2"  VerticalAlignment="Stretch" HorizontalAlignment="Stretch" Block.LineHeight="0.1"  x:Name="StationierungsFenster" VerticalScrollBarVisibility="Auto" HorizontalScrollBarVisibility="Auto" Foreground="GhostWhite" Background="#007EA7" >  
             </RichTextBox>
             <Label Margin="20 5 0 0" Content="Gesäuberte Daten Stationierung" Grid.Column="1" Grid.Row="0" FontFamily="Roboto"/>
-            <RichTextBox Grid.Column="1" Grid.Row="1" Margin="20 5" Padding="5 2" Block.LineHeight="0.1" VerticalAlignment="Stretch" HorizontalAlignment="Stretch" VerticalScrollBarVisibility="Auto" HorizontalScrollBarVisibility="Auto" x:Name="GesäubertesStationierungsFenster" Foreground="GhostWhite" Background="#173753" >
+            <RichTextBox Grid.Column="1" Grid.Row="1" Margin="20 5" Padding="5 2" Block.LineHeight="0.1" VerticalAlignment="Stretch" HorizontalAlignment="Stretch" VerticalScrollBarVisibility="Auto" HorizontalScrollBarVisibility="Auto" x:Name="GesäubertesStationierungsFenster" Foreground="GhostWhite" Background="#007EA7" >
             </RichTextBox>
             <Button Grid.Row="2" Grid.ColumnSpan="2" HorizontalAlignment="Left" VerticalAlignment="Bottom" Margin="200 15" x:Name="OpenStationierungsFileButton" Background="DimGray"  Command="{Binding CreateTaskCommand}" CommandParameter="{Binding}" 
                Click="OpenStationierungsFileButton_Click"
