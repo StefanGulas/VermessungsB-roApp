@@ -132,7 +132,6 @@ namespace VermessungsBüroApp
             }
         }
 
-
         private void MessPunkteListeButton_Click(object sender, RoutedEventArgs e)
         {
             if (MessPunkteListe.Visibility == Visibility.Hidden)    
@@ -170,18 +169,68 @@ namespace VermessungsBüroApp
             }
         }
 
-        private void OpenStationierungsFileButton_KeyDown(object sender, KeyEventArgs e)
-        {
-
-        }
 
         private void CleanStationierungsFileButton_Click(object sender, RoutedEventArgs e)
         {
-
+            var zeileReinigen = new ZeileReinigen();
+            TextRange rawDocumentTextRange = new TextRange(PunkteFenster.Document.ContentStart, PunkteFenster.Document.ContentEnd);
+            TextRange cleanedDocumentTextRange = new TextRange(GesäubertesPunkteFenster.Document.ContentStart, GesäubertesPunkteFenster.Document.ContentEnd);
+            string cleanedStream = zeileReinigen.CleaneText(rawDocumentTextRange.Text);
+            cleanedDocumentTextRange.Text = cleanedStream;
         }
 
         private void SaveStationierungsFileButton_Click(object sender, RoutedEventArgs e)
         {
+            TextRange cleanedTextRange = new TextRange(GesäubertesPunkteFenster.Document.ContentStart, GesäubertesPunkteFenster.Document.ContentEnd);
+            string cleanedText = cleanedTextRange.Text;
+            if (!string.IsNullOrWhiteSpace(cleanedText))
+            {
+                SaveFileDialog saveFileDialog = new SaveFileDialog();
+                saveFileDialog.Filter = "Text files (*.txt)|*.txt|All files (*.*)|*.*";
+                saveFileDialog.FileName = OpenedFileName;
+                if (saveFileDialog.ShowDialog() == true)
+                {
+                    var zeileReinigen = new ZeileReinigen();
+
+                    string textFileText = zeileReinigen.FinalClean(cleanedText);
+                    File.WriteAllText(saveFileDialog.FileName, textFileText);
+                }
+                PunkteFenster.Document.Blocks.Clear();
+                GesäubertesPunkteFenster.Document.Blocks.Clear();
+            }
+        }
+
+        private void OpenStationierungsFileButton_Click(object sender, RoutedEventArgs e)
+        {
+            PunkteFenster.Document.Blocks.Clear();
+            GesäubertesStationierungsFenster.Document.Blocks.Clear();
+            OpenFileDialog openFileDialog = new OpenFileDialog();
+            openFileDialog.Filter = "Text files (*.txt)|*.txt|All files (*.*)|*.*";
+            var canOpen = openFileDialog.ShowDialog();
+            try
+            {
+
+                using (FileStream stream = File.OpenRead(openFileDialog.FileName))
+                {
+                    TextRange documentTextRange = new TextRange(StationierungsFenster.Document.ContentStart, StationierungsFenster.Document.ContentEnd);
+
+                    string dataFormat = DataFormats.Text;
+                    string extension = System.IO.Path.GetExtension(openFileDialog.FileName);
+                    if (String.Compare(extension, ".xaml", true) == 0)
+                    {
+                        dataFormat = DataFormats.Xaml;
+                    }
+                    else if (String.Compare(extension, ".txt", true) == 0)
+                    {
+                        dataFormat = DataFormats.Text;
+                    }
+                    documentTextRange.Load(stream, dataFormat);
+                }
+            }
+            catch (Exception)
+            {
+            
+        }
 
         }
     }
