@@ -15,9 +15,9 @@ namespace VermessungsBueroAppTests
         {
             //MainWindow mainwindow = new MainWindow();
             ZeileReinigen zeileReinigen = new ZeileReinigen();
-            string expected = "      50200     98   400.000 1000.000            0";
+            string expected = "      50200     98   400.000 1000.000            0 ";
             string actual = zeileReinigen.CleanLine("50200STKE 98   400.000   1000.000 \"   \"", false);
-            Assert.IsTrue(string.Equals(expected, ""));
+            Assert.IsTrue(string.Equals(expected, actual));
         }
     }
 }
