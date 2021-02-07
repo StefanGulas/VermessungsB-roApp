@@ -26,7 +26,7 @@ namespace VermessungsBüroApp
             return rawList;
         }
 
-        private string CleanLine(string rawLine, bool isFinal)
+        public string CleanLine(string rawLine, bool isFinal)
         {
             string cleanedFullLine = string.Empty;
             string[] numbersInLine = rawLine.Split(' ');
