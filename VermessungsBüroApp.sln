@@ -5,7 +5,7 @@ VisualStudioVersion = 16.0.30907.101
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "VermessungsBüroApp", "VermessungsBüroApp\VermessungsBüroApp.csproj", "{2670BF62-D137-44FC-B914-61F44ED96F0B}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "VermessungsBueroAppTests", "VermessungsBueroAppTests\VermessungsBueroAppTests.csproj", "{5375CA34-D17C-4C02-AAC7-603949206E13}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "VermessungsBueroAppTests", "VermessungsBueroAppTests\VermessungsBueroAppTests.csproj", "{5375CA34-D17C-4C02-AAC7-603949206E13}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
